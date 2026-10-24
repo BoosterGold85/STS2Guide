@@ -1,0 +1,36 @@
+RUN COACH READ ONLY - LOCAL TEST BUILD
+
+Built against the two DLLs you uploaded. Build: 0 warnings, 0 errors.
+Game screenshot: v0.107.1, 2026.06.18. In-game loading/live behavior NOT yet tested.
+No .NET SDK, Python, or original STS2MCP mod is needed for the browser health check.
+No game files were changed during compilation. Installing adds our two mod files.
+
+1. Close Slay the Spire 2.
+2. Extract this ZIP to a normal folder (do not run DLL files).
+3. Open Steam > Library > right-click Slay the Spire 2 > Manage > Browse local files.
+4. Create a folder named mods inside the game folder, if it is absent.
+5. Copy ONLY these files from the extracted mods folder into the game's mods folder:
+     RunCoach.ReadOnly.dll
+     RunCoach.ReadOnly.json
+   Keep the two files together. Do not replace sts2.dll or GodotSharp.dll.
+   If files with these exact names already exist, preserve them before replacing.
+6. Launch the game normally. If the game asks for consent to load mods, read it and
+   accept only if you want to proceed. No separate original STS2MCP install is required.
+7. On the SAME PC, open your browser to:
+     http://127.0.0.1:15527/
+   The new port is 15527, not 15526.
+8. Send the page response back to the chat. Expected bridge_id: RunCoach.ReadOnly.
+   If the browser says connection refused, send that result; do not change firewall
+   settings, run as administrator, or install unrelated mods to try to fix it.
+
+After the bridge loads, the new read-only state page is:
+  http://127.0.0.1:15527/coach/v1/state
+This route serves a snapshot and contains no gameplay command dispatcher.
+Start with the health page in step 7; health alone does not prove game state works.
+
+REMOVE / UNDO
+Close the game and remove ONLY RunCoach.ReadOnly.dll and RunCoach.ReadOnly.json from
+its mods folder. Leave other mods, saves, and game files untouched.
+
+This prototype has no dashboard or recommendations. Source and known limitations are
+in the STS2Guide repository. Multiplayer host/client validation remains outstanding.
