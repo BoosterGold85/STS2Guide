@@ -1,9 +1,21 @@
 RUN COACH READ ONLY - LOCAL TEST BUILD
 
 Built against the two DLLs you uploaded. Build: 0 warnings, 0 errors.
-Game screenshot: v0.107.1, 2026.06.18. In-game loading/live behavior NOT yet tested.
+Game screenshot: v0.107.1, 2026.06.18. In-game loading/health confirmed by user.
+Live state and multiplayer behavior are NOT yet verified.
 No .NET SDK, Python, or original STS2MCP mod is needed for the browser health check.
 No game files were changed during compilation. Installing adds our two mod files.
+
+SAVE PROFILE NOTICE -- READ BEFORE ENABLING MODS
+Your game uses a SEPARATE modded profile when mods are enabled. Unlocks and the
+current normal run may appear absent in that profile. Removing our two files with
+the game closed restored the user's normal save. The manifest affects_gameplay=false
+does NOT prevent this game-level profile switch. This bridge cannot read your normal
+run while the game is using its separate modded profile.
+
+Do not copy, merge, rename, or replace save files to work around this. Back up your
+normal save before further experiments. Use only a disposable new modded test run.
+See SAVE-PROFILES.txt for evidence and limitations. No save migration is included.
 
 1. Close Slay the Spire 2.
 2. Extract this ZIP to a normal folder (do not run DLL files).
