@@ -51,3 +51,13 @@
   clear suggestions on disconnect/staleness. No original action endpoint is enabled.
 - New live map capture/route advice still needs PC validation. No milestone is marked
   fully accepted, and score is not a survival probability.
+
+## 0.2.0 external screen preview
+
+- Added a standalone self-contained Windows x64 app with F8 foreground-game capture,
+  local Windows OCR, browser review editor and always-on-top reviewed-plan window.
+- Requires no game mod or save migration; earlier bridge is optional and separate.
+- Added guided map annotation and HP suggestions with mandatory review; no automatic
+  map/icon/edge recognition is claimed. Clear edited plans and expire displayed advice.
+- Cross-build and synthetic service/browser tests pass. Windows UI/capture/OCR require
+  PC validation; actual map screenshots are still needed for automatic recognition.

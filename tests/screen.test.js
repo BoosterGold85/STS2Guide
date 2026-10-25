@@ -1,0 +1,15 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { hpSuggestion, validateMap, confirmedScreenState } from '../external/ui/screen_model.js';
+import { advise } from '../frontend/coach.js';
+const nodes = () => [{ id: '1', x: 150, y: 400, type: 'ancient', children: ['2','3'] }, { id:'2', x:100, y:250, type:'rest', children:['4'] }, { id:'3', x:250, y:250, type:'elite', children:['4'] }, {id:'4',x:150,y:100,type:'fight',children:[]}];
+const input = () => ({nodes:nodes(),currentId:'1',width:400,height:500,stats:{hp:'25',maxHp:'80',gold:'117',potions:'0'},confirmed:true,capturedAt:new Date().toISOString()});
+test('OCR suggests only a single plausible HP pair, never a certainty',()=>{ assert.deepEqual(hpSuggestion('Ironclad 68 / 80 Gold 99'),{hp:68,maxHp:80}); assert.equal(hpSuggestion('68/80 and 20/50'),null); assert.equal(hpSuggestion('99/10'),null); assert.equal(hpSuggestion('11 cards'),null); });
+test('review is required before advice',()=>{ const data=input();data.confirmed=false;assert.throws(()=>confirmedScreenState(data),/Review/); });
+test('confirmed screen map works without bridge or assembly matching',()=>{ const state=confirmedScreenState(input());assert.equal(state.source,'screen');const response=advise(state,4);assert.equal(response.blocked,null);assert.equal(response.strategies.length,3);assert.equal(response.strategies[0].ids[0],'2'); });
+test('unconfirmed source cannot bypass engine gate',()=>{ const state=confirmedScreenState(input());state.compatibility='unverified';assert.ok(advise(state).blocked); });
+test('cannot silently default missing stats to zero',()=>{ for(const key of ['hp','maxHp','gold','potions']) { const data=input();data.stats[key]='';assert.throws(()=>confirmedScreenState(data)); } });
+test('invalid stats and stale screenshots are blocked',()=>{ const data=input();data.stats.hp='1000';assert.throws(()=>confirmedScreenState(data));data.stats.hp='25';data.capturedAt='2000-01-01T00:00:00Z';assert.throws(()=>confirmedScreenState(data),/15 minutes/); });
+test('current position must connect to next choices',()=>{assert.throws(()=>validateMap(nodes(),'4',400,500),/current position/);});
+test('backwards, cyclic, missing and duplicate edges/nodes fail closed',()=>{ for(const mutate of [n=>n[1].children.push('1'), n=>n[1].children.push('missing'), n=>n.push(n[0])]) {const n=nodes();mutate(n);assert.throws(()=>validateMap(n,'1',400,500));} });
+test('normalized map copies annotations without mutation',()=>{const n=nodes();const m=validateMap(n,'1',400,500);m.nodes[0].children.pop();assert.equal(n[0].children.length,2);});

@@ -93,7 +93,7 @@ export function scoreRoute(route, player, mode = 'balanced') {
 export function advise(state, horizon = 6) {
   if (!state.active) return { blocked: 'No active run. Start or resume your modded test run.', strategies: [] };
   if (state.isMultiplayer) return { blocked: 'Co-op route advice is not validated yet. Player stats are still shown.', strategies: [] };
-  if (state.compatibility !== 'assembly_matched') return { blocked: 'Game build is unsupported. Route advice is disabled.', strategies: [] };
+  if (state.source === 'screen' ? state.compatibility !== 'screen_confirmed' : state.compatibility !== 'assembly_matched') return { blocked: 'Game build is unsupported. Route advice is disabled.', strategies: [] };
   if (state.players.length !== 1 || state.players[0].hp <= 0) return { blocked: 'An active single-player character is required.', strategies: [] };
   if (!state.map) return { blocked: state.mapError || 'Map data is not available yet.', strategies: [] };
   if (!state.map.ready) return { blocked: state.map.notice || 'Open the map in the game to see selectable routes.', strategies: [] };

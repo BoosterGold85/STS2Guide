@@ -1,0 +1,8 @@
+Run Coach Desktop uses the self-contained Microsoft .NET/Windows Desktop runtime and
+Windows SDK .NET projections. Included runtime license and third-party notice files
+are under licenses/ in this archive.
+Windows SDK .NET Ref 10.0.19041.57: Copyright Microsoft Corporation. All rights reserved.
+License terms: https://aka.ms/WinSDKLicenseURL
+Project: https://aka.ms/WinSDKProjectURL
+The Windows OCR service is supplied by the user's operating system, not redistributed.
+No STS2 game DLL, texture, save file, or original STS2MCP mod is distributed in this app.

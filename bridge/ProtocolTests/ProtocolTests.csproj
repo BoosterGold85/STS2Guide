@@ -8,4 +8,8 @@
     <EmbeddedResource Include="../../frontend/styles.css" LogicalName="CoachAssets.styles.css" />
     <EmbeddedResource Include="../../frontend/demo.json" LogicalName="CoachAssets.demo.json" />
   </ItemGroup>
-</Project>
+<ItemGroup>
+<Compile Include="../../external/RunCoach.Desktop/ScreenService.cs" Link="ScreenService.cs" />
+<Compile Include="../../external/RunCoach.Desktop/CaptureModels.cs" Link="CaptureModels.cs" />
+<EmbeddedResource Include="../../external/ui/*" LogicalName="ScreenAssets.%(Filename)%(Extension)" />
+</ItemGroup></Project>

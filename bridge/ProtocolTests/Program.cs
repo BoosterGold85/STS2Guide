@@ -3,14 +3,21 @@ using System.Net.Sockets;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using RunCoach.ReadOnly;
+using RunCoach.Desktop;
 
 var reservation = new TcpListener(IPAddress.Loopback, 0);
 reservation.Start();
 int port = ((IPEndPoint)reservation.LocalEndpoint).Port;
 reservation.Stop();
-using var bridge = new BridgeServer(port);
+string lastOverlay = "";
+var screenService = new ScreenService(text => lastOverlay = text, () => lastOverlay = "", standalone: args.Length == 1 && args[0] == "--serve-screen");
+using var bridge = new BridgeServer(port, screenService.Route);
 using var client = new HttpClient(new HttpClientHandler { UseProxy = false, AllowAutoRedirect = false })
 { BaseAddress = new Uri($"http://127.0.0.1:{port}"), Timeout = TimeSpan.FromSeconds(3) };
+if (args.Length == 1 && args[0] == "--serve-screen")
+{
+    Console.WriteLine($"PORT={port}"); Console.ReadLine(); return;
+}
 if (args.Length == 2 && args[0] == "--serve-fixture")
 {
     var fixture = JsonNode.Parse(File.ReadAllText(args[1]))!;
@@ -93,6 +100,25 @@ await RawExpect($"GET / HTTP/1.1\r\nHost: attacker.example:{port}\r\n\r\n", "HTT
 await RawExpect($"GET / HTTP/1.1\r\nHost: 127.0.0.1:{port}\r\nHost: localhost:{port}\r\n\r\n", "HTTP/1.1 400 Bad Request");
 await RawExpect($"GET / HTTP/1.1\r\nHost: 127.0.0.1:{port}\r\nContent-Length: 1\r\n\r\nx", "HTTP/1.1 400 Bad Request");
 await RawExpect($"GET / HTTP/1.1\r\nHost: 127.0.0.1:{port}\r\nX-Large: {new string('x', 8200)}\r\n\r\n", "HTTP/1.1 400 Bad Request");
+await Expect("/screen", HttpStatusCode.OK);
+await Expect("/screen-assets/app.js", HttpStatusCode.OK);
+await Expect("/screen-assets/screen_model.js", HttpStatusCode.OK);
+await Expect("/screen-assets/styles.css", HttpStatusCode.OK);
+await Expect("/screen/v1/status", HttpStatusCode.OK);
+await Expect("/screen/v1/image?id=missing", HttpStatusCode.NotFound);
+screenService.SetCapture(new CaptureResult("test", DateTimeOffset.UtcNow.ToString("O"), 100, 100, "data:image/png;base64,AA==", "68/80", [], null));
+await Expect("/screen/v1/image?id=test", HttpStatusCode.OK);
+string plan = Uri.EscapeDataString(JsonSerializer.Serialize(new { capture_id = "test", mode = "safe", score = 60, route = "Fight -> Rest" }));
+await Expect("/screen/v1/plan?data=" + plan, HttpStatusCode.OK);
+if (!lastOverlay.Contains("SAFE")) throw new Exception("Overlay callback missing");
+passed++;
+await Expect("/screen/v1/clear", HttpStatusCode.OK);
+if (lastOverlay != "") throw new Exception("Overlay was not cleared");
+passed++;
+await Expect("/screen/v1/plan?data=not-json", HttpStatusCode.BadRequest);
+screenService.ClearCapture("Game unavailable");
+await Expect("/screen/v1/plan?data=" + plan, HttpStatusCode.Conflict);
+await Expect("/screen/v1/plan?data=" + plan, HttpStatusCode.MethodNotAllowed, HttpMethod.Post);
 await Task.Delay(5100);
 await Expect("/coach/v1/state", HttpStatusCode.ServiceUnavailable);
 bridge.Publish(new { active = false, schema = BridgeServer.Schema });

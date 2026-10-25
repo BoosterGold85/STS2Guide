@@ -1,5 +1,22 @@
 # STS2 Run Coach
 
+## External screen companion (no mod)
+
+The user requested preserving normal card progress. The new external Windows app
+loads no game mod and never changes save profiles. It captures the visible foreground
+game window, uses local Windows OCR for HP suggestions, and shows reviewed route plans
+in an always-on-top window. **Map marking is manual in this preview; automatic map
+recognition is not implemented or verified yet.**
+
+[Download the external Windows preview](https://github.com/BoosterGold85/STS2Guide/raw/refs/heads/main/downloads/STS2-Run-Coach-External-0.2.0-preview.zip).
+Extract outside the game folder and run `RunCoach.Desktop.exe`; remove the earlier
+bridge mod first to return to normal progress. See [external app instructions](external/README.md).
+Windows capture/OCR need local PC validation; service/editor tests use synthetic data.
+
+![External editor with a clearly labeled synthetic map](docs/images/screen-preview.png)
+
+## Earlier mod-based route preview
+
 A read-only single-player route-coach preview for Slay the Spire 2. It shows live run
 stats, the act map, and explained **Safe / Balanced / Aggressive** route rankings.
 The browser dashboard and deterministic engine are embedded in the mod: no Python,

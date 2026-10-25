@@ -15,6 +15,8 @@ public sealed class BridgeServer : IDisposable
     private readonly TcpListener listener;
     private readonly Thread thread;
     private readonly int port;
+    public sealed record LocalResponse(int Status, string Body, string ContentType = "application/json; charset=utf-8");
+    private readonly Func<string, LocalResponse?>? extraRoutes;
     private volatile bool stopping;
     private string snapshot = "{\"status\":\"starting\"}";
     private long publishedAt;
@@ -23,10 +25,11 @@ public sealed class BridgeServer : IDisposable
         PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower
     };
 
-    public BridgeServer(int port = DefaultPort)
+    public BridgeServer(int port = DefaultPort, Func<string, LocalResponse?>? extraRoutes = null)
     {
         if (port < 1 || port > 65535) throw new ArgumentOutOfRangeException(nameof(port));
         this.port = port;
+        this.extraRoutes = extraRoutes;
         listener = new TcpListener(IPAddress.Loopback, port);
         listener.Start(8);
         thread = new Thread(Serve) { IsBackground = true, Name = "RunCoach.ReadOnly" };
@@ -106,6 +109,14 @@ public sealed class BridgeServer : IDisposable
             (headers.TryGetValue("Content-Length", out var length) && length != "0"))
         { Send(stream, 400, "{\"error\":\"request_body_not_supported\"}"); return; }
         string path = request[1];
+        // Optional standalone-app routes never exist in the game mod (callback is null).
+        if (extraRoutes != null)
+        {
+            LocalResponse? extra;
+            try { extra = extraRoutes(path); }
+            catch (Exception) { extra = new LocalResponse(500, "{\"error\":\"helper_request_failed\"}"); }
+            if (extra != null) { Send(stream, extra.Status, extra.Body, extra.ContentType); return; }
+        }
         if (path.Contains('?'))
         { Send(stream, 400, "{\"error\":\"query_not_supported\"}"); return; }
         if (path == "/coach" || path == "/coach/")

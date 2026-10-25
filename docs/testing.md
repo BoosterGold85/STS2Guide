@@ -67,3 +67,14 @@ Final preview verification: 30 Python tests, 22 Node tests, 26 real HTTP checks,
 and the Chromium smoke suite pass. The release DLL builds with zero warnings/errors
 against the uploaded game references. ZIP hashes and embedded resources were verified;
 only the custom mod DLL is distributed, never sts2.dll or GodotSharp.dll.
+
+## External screen preview
+
+31 Node tests (22 route + 9 screen-model), 30 Python diagnostics, and 40 local HTTP
+checks pass. The original dashboard browser suite and separate screen-editor browser
+suite use synthetic data. The screen suite covers local PNG import, room annotation,
+branch connections, mandatory review, route rankings, invalidation on edits, mobile
+layout and HP OCR suggestion handling. No JS errors were observed.
+The self-contained Windows x64 app cross-builds with no game references. Its native
+WinForms window, F8 capture, capture exclusion and WinRT OCR cannot be run in Linux.
+Their runtime acceptance is outstanding. No actual map recognition is implemented.

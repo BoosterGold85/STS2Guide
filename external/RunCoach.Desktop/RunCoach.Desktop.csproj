@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType><TargetFramework>net9.0-windows10.0.19041.0</TargetFramework>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting><UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><AssemblyName>RunCoach.Desktop</AssemblyName>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Version>0.2.0-preview</Version><AssemblyVersion>0.2.0.0</AssemblyVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../bridge/RunCoach.ReadOnly/BridgeServer.cs" Link="BridgeServer.cs" />
+    <EmbeddedResource Include="../ui/*" LogicalName="ScreenAssets.%(Filename)%(Extension)" />
+    <EmbeddedResource Include="../../frontend/coach.js" LogicalName="CoachAssets.coach.js" />
+  </ItemGroup>
+</Project>

@@ -1,1 +1,11 @@
-{"name":"sts2-run-coach","private":true,"type":"module","scripts":{"test":"node --test tests/coach.test.js"},"engines":{"node":">=20"}}
+{
+  "name": "sts2-run-coach",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/coach.test.js tests/screen.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
