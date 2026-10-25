@@ -1,0 +1,16 @@
+{
+  "state_type": "map",
+  "run": {
+    "act": 1,
+    "floor": 0,
+    "ascension": 0
+  },
+  "player": {
+    "character": "Ironclad",
+    "hp": 80,
+    "max_hp": 80,
+    "gold": 99,
+    "relics": [],
+    "potions": []
+  }
+}

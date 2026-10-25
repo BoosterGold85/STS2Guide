@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <AssemblyName>RunCoach.ReadOnly</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="BridgeServer.cs" />
+    <Compile Include="GameReader.cs" />
+    <Compile Include="MapReader.cs" />
+    <Reference Include="sts2"><HintPath>$(GameDataDir)/sts2.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="GodotSharp"><HintPath>$(GameDataDir)/GodotSharp.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+  <Target Name="CheckGameReferences" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(GameDataDir)/sts2.dll')" Text="Set GameDataDir to your game's data_sts2_windows_x86_64 folder. sts2.dll is required." />
+    <Error Condition="!Exists('$(GameDataDir)/GodotSharp.dll')" Text="GodotSharp.dll is required in GameDataDir." />
+  </Target>
+  <ItemGroup>
+    <EmbeddedResource Include="../../frontend/index.html" LogicalName="CoachAssets.index.html" />
+    <EmbeddedResource Include="../../backend/app/game/browser_adapter.js" LogicalName="CoachAssets.adapter.js" />
+    <EmbeddedResource Include="../../frontend/*.js" LogicalName="CoachAssets.%(Filename)%(Extension)" />
+    <EmbeddedResource Include="../../frontend/styles.css" LogicalName="CoachAssets.styles.css" />
+    <EmbeddedResource Include="../../frontend/demo.json" LogicalName="CoachAssets.demo.json" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,53 @@
+STS2 RUN COACH 0.1.0 PREVIEW
+A single-player map route coach, live dashboard, and read-only bridge in one mod.
+No Python, Node, .NET SDK, or original STS2MCP installation needed on your gaming PC.
+
+UPDATE / INSTALL
+1. CLOSE Slay the Spire 2.
+2. Extract this ZIP. Keep the previous bridge files in a backup folder OUTSIDE the game.
+3. Open Steam > Library > right-click Slay the Spire 2 > Manage > Browse local files.
+4. Inside the game's mods folder, replace ONLY these two files with the new ones from
+   this ZIP's mods folder:
+     RunCoach.ReadOnly.dll
+     RunCoach.ReadOnly.json
+   If mods does not exist, create it. Do not change sts2.dll or GodotSharp.dll.
+5. Relaunch the game with mods enabled.
+6. Open Run Coach.url from the extracted ZIP, or open this in your browser:
+     http://127.0.0.1:15527/coach
+7. Start/resume a disposable SINGLE-PLAYER MODDED run. Open the MAP in the game.
+   The dashboard will automatically show the map and rank available routes.
+
+USING THE COACH
+- Choose Safe, Balanced, or Aggressive in the browser to inspect/highlight a route.
+- Choose a 4-, 6-, or 8-room lookahead. These controls affect the advisor, not the game.
+- Route score is a heuristic comparison, NOT a survival percentage or win probability.
+- Click Explore demo to see sample data. Demo is clearly labeled and not your live run.
+- If the in-game map is closed or travel is unavailable, route advice is hidden.
+- No gameplay commands are sent. Make every move yourself in the game.
+
+LIMITATIONS
+Map capture compiles against your uploaded v0.107.1 game files. The dashboard/engine
+pass automated browser and fixture tests; this new map capture still needs live testing.
+Advice is disabled for unrecognized game assemblies and for co-op (not validated).
+Deck strength, relic effects, exact enemies, shop stock and event outcomes are not
+modeled. Read "What this preview knows" in the dashboard for scoring assumptions.
+Gold/HP estimates are not promises. Scores update when a new observation arrives.
+
+IMPORTANT: SAVE PROFILES
+Loading mods switches this game to SEPARATE modded progress, even for read-only mods.
+Your normal save is not imported. The user's normal save returned after removing our
+bridge with the game closed. Do not copy/merge saves or patch the profile separation.
+Use a throwaway modded run; keep a backup of your normal saves before experimenting.
+See SAVE-PROFILES.txt for details.
+
+REMOVE / ROLL BACK
+Close the game and remove ONLY RunCoach.ReadOnly.dll and RunCoach.ReadOnly.json from
+the mods folder to return to normal play. To restore the earlier bridge, use your backup
+of those two files. Leave all other mods, saves and game files untouched.
+
+TROUBLESHOOTING
+- Connection refused: ensure the game is running with the two mod files loaded.
+- JSON instead of dashboard: use /coach, not / or /coach/v1/state.
+- No route advice: open the in-game map and wait until the game allows travel.
+- Unsupported build: send the message back to chat; do not bypass the compatibility check.
+- Do not change firewall settings, run as administrator, or install unrelated mods.

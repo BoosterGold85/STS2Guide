@@ -1,0 +1,36 @@
+{
+  "state_type": "map",
+  "game_mode": "multiplayer",
+  "net_type": "Host",
+  "player_count": 2,
+  "local_player_slot": 0,
+  "run": {
+    "act": 1,
+    "floor": 1,
+    "ascension": 0
+  },
+  "players": [
+    {
+      "character": "Ironclad",
+      "is_local": true,
+      "hp": 75,
+      "max_hp": 80,
+      "gold": 99
+    },
+    {
+      "character": "Silent",
+      "is_local": false,
+      "hp": 63,
+      "max_hp": 70,
+      "gold": 95
+    }
+  ],
+  "player": {
+    "character": "Ironclad",
+    "hp": 75,
+    "max_hp": 80,
+    "gold": 99,
+    "relics": [],
+    "potions": []
+  }
+}

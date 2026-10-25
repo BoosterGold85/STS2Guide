@@ -1,0 +1,10 @@
+{
+  "id": "RunCoach.ReadOnly",
+  "name": "Run Coach (route preview)",
+  "author": "STS2Guide",
+  "description": "Local run-state observations only. No gameplay commands. Compatibility unverified.",
+  "version": "0.1.0",
+  "has_pck": false,
+  "has_dll": true,
+  "affects_gameplay": false
+}

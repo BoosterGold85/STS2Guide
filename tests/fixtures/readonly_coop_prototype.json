@@ -1,0 +1,19 @@
+{
+  "schema": "run-coach-readonly-v1",
+  "bridge_id": "RunCoach.ReadOnly",
+  "bridge_version": "0.0.1-prototype",
+  "game_version": null,
+  "compatibility": "unverified",
+  "status": "ok",
+  "timestamp": "2026-10-24T12:00:00+00:00",
+  "active": true,
+  "is_multiplayer": true,
+  "act": 1,
+  "floor": 2,
+  "ascension": 0,
+  "current_room_type": "MapRoom",
+  "players": [
+    {"slot":0,"character":"IRONCLAD","current_hp":70,"max_hp":80,"gold":99,"deck_count":10,"relic_count":1,"potion_count":0},
+    {"slot":1,"character":"SILENT","current_hp":60,"max_hp":70,"gold":95,"deck_count":10,"relic_count":1,"potion_count":1}
+  ]
+}

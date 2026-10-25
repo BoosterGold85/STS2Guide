@@ -1,0 +1,251 @@
+{
+  "schema": "run-coach-readonly-v1",
+  "bridge_id": "RunCoach.ReadOnly",
+  "bridge_version": "0.1.0-preview",
+  "game_version": null,
+  "compatibility": "assembly_matched",
+  "save_profile_mode": "modded",
+  "status": "ok",
+  "timestamp": "2026-10-24T23:50:00+00:00",
+  "active": true,
+  "is_multiplayer": false,
+  "act": 1,
+  "floor": 4,
+  "ascension": 0,
+  "current_room_type": "MapRoom",
+  "players": [
+    {
+      "slot": 0,
+      "character": "IRONCLAD",
+      "current_hp": 46,
+      "max_hp": 80,
+      "gold": 128,
+      "deck_count": 13,
+      "relic_count": 2,
+      "potion_count": 1
+    }
+  ],
+  "map": {
+    "current_node_id": "1:0",
+    "nodes": [
+      {
+        "node_id": "1:0",
+        "col": 1,
+        "row": 0,
+        "type": "Ancient",
+        "children": [
+          "0:1",
+          "1:1",
+          "2:1"
+        ]
+      },
+      {
+        "node_id": "0:1",
+        "col": 0,
+        "row": 1,
+        "type": "Monster",
+        "children": [
+          "0:2",
+          "1:2"
+        ]
+      },
+      {
+        "node_id": "1:1",
+        "col": 1,
+        "row": 1,
+        "type": "Unknown",
+        "children": [
+          "0:2",
+          "1:2",
+          "2:2"
+        ]
+      },
+      {
+        "node_id": "2:1",
+        "col": 2,
+        "row": 1,
+        "type": "Elite",
+        "children": [
+          "1:2",
+          "2:2"
+        ]
+      },
+      {
+        "node_id": "0:2",
+        "col": 0,
+        "row": 2,
+        "type": "RestSite",
+        "children": [
+          "0:3",
+          "1:3"
+        ]
+      },
+      {
+        "node_id": "1:2",
+        "col": 1,
+        "row": 2,
+        "type": "Monster",
+        "children": [
+          "0:3",
+          "1:3",
+          "2:3"
+        ]
+      },
+      {
+        "node_id": "2:2",
+        "col": 2,
+        "row": 2,
+        "type": "Treasure",
+        "children": [
+          "1:3",
+          "2:3"
+        ]
+      },
+      {
+        "node_id": "0:3",
+        "col": 0,
+        "row": 3,
+        "type": "Elite",
+        "children": [
+          "0:4",
+          "1:4"
+        ]
+      },
+      {
+        "node_id": "1:3",
+        "col": 1,
+        "row": 3,
+        "type": "Shop",
+        "children": [
+          "0:4",
+          "1:4",
+          "2:4"
+        ]
+      },
+      {
+        "node_id": "2:3",
+        "col": 2,
+        "row": 3,
+        "type": "Monster",
+        "children": [
+          "1:4",
+          "2:4"
+        ]
+      },
+      {
+        "node_id": "0:4",
+        "col": 0,
+        "row": 4,
+        "type": "Monster",
+        "children": [
+          "0:5",
+          "1:5"
+        ]
+      },
+      {
+        "node_id": "1:4",
+        "col": 1,
+        "row": 4,
+        "type": "Unknown",
+        "children": [
+          "0:5",
+          "1:5",
+          "2:5"
+        ]
+      },
+      {
+        "node_id": "2:4",
+        "col": 2,
+        "row": 4,
+        "type": "RestSite",
+        "children": [
+          "1:5",
+          "2:5"
+        ]
+      },
+      {
+        "node_id": "0:5",
+        "col": 0,
+        "row": 5,
+        "type": "RestSite",
+        "children": [
+          "0:6",
+          "1:6"
+        ]
+      },
+      {
+        "node_id": "1:5",
+        "col": 1,
+        "row": 5,
+        "type": "Elite",
+        "children": [
+          "0:6",
+          "1:6",
+          "2:6"
+        ]
+      },
+      {
+        "node_id": "2:5",
+        "col": 2,
+        "row": 5,
+        "type": "Unknown",
+        "children": [
+          "1:6",
+          "2:6"
+        ]
+      },
+      {
+        "node_id": "0:6",
+        "col": 0,
+        "row": 6,
+        "type": "Monster",
+        "children": [
+          "1:7"
+        ]
+      },
+      {
+        "node_id": "1:6",
+        "col": 1,
+        "row": 6,
+        "type": "Shop",
+        "children": [
+          "1:7"
+        ]
+      },
+      {
+        "node_id": "2:6",
+        "col": 2,
+        "row": 6,
+        "type": "Treasure",
+        "children": [
+          "1:7"
+        ]
+      },
+      {
+        "node_id": "1:7",
+        "col": 1,
+        "row": 7,
+        "type": "RestSite",
+        "children": [
+          "1:8"
+        ]
+      },
+      {
+        "node_id": "1:8",
+        "col": 1,
+        "row": 8,
+        "type": "Boss",
+        "children": []
+      }
+    ],
+    "reachable_now_ids": [
+      "0:1",
+      "1:1",
+      "2:1"
+    ],
+    "decision_ready": true,
+    "boss": "DEMO BOSS",
+    "notice": null
+  },
+  "map_error": null
+}

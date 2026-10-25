@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark"><title>STS2 Run Coach</title>
+  <link rel="stylesheet" href="/assets/styles.css"><script type="module" src="/assets/app.js"></script>
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="/coach"><span class="brand-mark">✦</span><span>RUN COACH<small>SLAY THE SPIRE 2</small></span></a><div class="top-right"><span class="preview">SINGLE-PLAYER PREVIEW</span><span id="connection" class="connection waiting" role="status">Connecting</span></div></header>
+  <main>
+    <div class="page-heading"><div><p class="eyebrow">READ THE RUN. CHOOSE YOUR PATH.</p><h1>A clearer way up.</h1><p class="subheading">Your run, your decisions. A second opinion on the road ahead.</p></div><button id="demo-toggle" class="button secondary" type="button">Explore demo</button></div>
+    <div id="demo-notice" class="notice demo-notice" hidden>DEMO · Sample data only. These recommendations do not describe your live run.</div>
+    <div class="notice save-notice"><span class="notice-icon">i</span><span><strong>Modded saves are separate.</strong> Use a disposable test run. Removing the mod returns you to normal play; do not copy or merge saves.</span></div>
+    <section id="run-stats" class="run-stats" aria-label="Live run status"><div class="empty-stats">Waiting for the game…</div></section>
+    <section class="workspace">
+      <article class="panel map-panel"><div class="panel-heading"><div><p class="eyebrow">THE ROAD AHEAD</p><h2>Act map <span id="boss-name"></span></h2></div><span id="map-context" class="muted">Open the map in game</span></div><div id="map-view" class="map-view"><p class="empty">Your map will appear when a run is active.</p></div><div class="legend"><span>✕ Fight</span><span>♛ Elite</span><span>♨ Campfire</span><span>$ Shop</span><span>◇ Treasure</span><span>? Unknown</span><span>✦ Ancient</span><span>♜ Boss</span></div></article>
+      <aside class="advice-panel"><div class="advice-heading"><div><p class="eyebrow">PLAN YOUR NEXT MOVE</p><h2>Route coach</h2></div><label class="lookahead">Look ahead<select id="horizon" aria-label="Route lookahead"><option value="4">4 rooms</option><option value="6" selected>6 rooms</option><option value="8">8 rooms</option></select></label></div><p class="model-note">Heuristic route scores · <strong>not win probabilities</strong></p><div id="route-status" class="route-status" role="status">Connecting to your run…</div><div id="strategies" class="strategies"></div><div id="route-detail" class="route-detail"></div></aside>
+    </section>
+    <details class="model-explainer"><summary>What this preview knows—and what it doesn’t</summary><p>Routes use your current HP, gold, and the visible map graph. Potion count is shown as context; unknown potion effects are not assigned a healing value. Scores compare recovery, elite exposure, shop timing, and room rewards over the chosen lookahead. They are deterministic rules, not measured survival odds.</p><p>The model budgets 7 HP per fight, 18 per elite, 4 per unknown room, and 24 per boss; campfires can restore 30% of max HP. It assumes 15 gold per fight and 25 per elite. These are editable estimates, not predictions of your next encounter. A campfire score assumes recovery is available; special restrictions may differ.</p><p>Deck strength, relic effects, actual enemy matchups, shop stock, and event outcomes are not modeled yet. Map advice is shown only when the game exposes selectable travel options. Coordinates count columns from the left and rows from the bottom; use the highlighted map to identify each choice. Co-op advice is disabled until tested. You always make every game action yourself.</p></details>
+    <footer><span>RUN COACH <span class="footer-version">0.1.0 preview</span> · Read only</span><span id="updated">No observation yet</span></footer>
+  </main>
+</body>
+</html>
